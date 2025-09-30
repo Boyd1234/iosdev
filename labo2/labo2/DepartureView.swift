@@ -24,8 +24,7 @@ struct DepartureView: View {
             }
             GridRow{
                 Text("Brussels")
-                Image(systemName: "airplane")
-                    .font(.system(size: 65))
+                Image(systemName: "airplane").imageScale(.large)
                 Text("Barcelona")
             }
         }

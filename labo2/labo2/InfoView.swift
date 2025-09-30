@@ -20,7 +20,7 @@ struct InfoView: View {
                     Text("blablablablabalablabalablablabla blklfjsdfpq dqskopdfjlqspfo milqsdfjpoizufpojsdmf jsopf qsdfklm qjsfplmqs djkfzeopijfdspmlfk jqfpo imzjefpsmldfj k,e)zffsdhgds tgsdhdsfgfghjhktuyrtyjetzqrsdfugiopomkjl;h,gnfbdvsfqertyuiyoulhkjg,fdnfhsreyteuiotlyr;t,rtjsyutkjftydrseygthrgeresqdtfgfjyftdhrsgesqldfkmjqs lkfqjdsf pjqsmdf ojpze fopujz foiqefu opqezfjookqzejflmdsfjkol mqsdfjml qsdjflk mqsdklfjm qsldjfkmqsdlfj mqsdfkjl mqsdfkjlmqsdfjklm qsdkjlf qsdjklf mqsdjkfl sqjdklf mqsdkjlfm qsdjf lmqsfd jklm qsfdq sdfuiopqs fjqsdok mfljkmqdsf jklm jsdfklmq sjkdflm qsjmlfd lqjksmdfioqzue fouqpzfjqsmdflj kqsmldf jklqs fdm sdfihqsojdfjmqslfjqsdlmjkd fjosqklf jqsplmdf jkqlsmf lqjsmkf jklmsqdf jklmqdsf klmjqsdkflqs jmfqsdklpfj msjmdfk qsdjmlf jqskf mqskjfl msqdjlf").foregroundColor(.gray)
                     Spacer()
                     Text("Climate")
-                        .bold()
+                        .font(Font.headline)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Text("according to blabalablablabalablablablablablablablaqsjdkmflqsjdflmqskjfmlqsdkf jqkl fmjqsdflkm qsjfmlqsj fopiej fdlsqmkfj ,speoifj sdmklqfj qsplkjm ze lfkjsdqf, qsdfk jqsmdf ljqzieof pjmsfzepo uapfsdqj lkfjqzepiop")
                         .foregroundColor(.gray)
