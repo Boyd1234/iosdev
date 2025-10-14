@@ -11,7 +11,7 @@ import SwiftUI
 struct Labo3App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(stack: [], numbers: [])
+            ContentView()
         }
     }
 }

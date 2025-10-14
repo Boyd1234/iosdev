@@ -1,98 +1,77 @@
-//
-//  ContentView.swift
-//  Labo3
-//
-//  Created by Boyd Bulcaen on 08/10/2025.
-//
-
 import SwiftUI
-extension View {
-    func calcButtonStyle() -> some View {
-        self
-            .padding(10)
-            .background(Color.gray)
-            .foregroundColor(.white)
-            .clipShape(Capsule())
-    }
-}
-enum Operation {
-    case none
-    case add, subtract, multiply, divide
-}
 
 struct ContentView: View {
-    @State var stack : Array<Int>
-    @State var numbers : Array<Int>
-    @State var action: Operation = .none
-    @State var result : String = ""
-
-
+    @State var calcEngine = CalcEngine()
     var body: some View {
-        HStack{
-            TextEditor(text: .constant(result))
-                .frame(width: 100, height: 150)
-            VStack{
+        VStack {
+            HStack{
+                TextEditor(text: .constant(calcEngine.result)).frame(width: 100).frame(height: 150).padding().foregroundColor(Color.black).background(Color.black)
                 Grid{
                     GridRow{
-                        ForEach(7..<10){ nummer in
-                            Button("\(nummer)"){
-                                numbers.append(nummer)
-                            }.calcButtonStyle()
+                        ForEach(7..<10){
+                            number in
+                            CalcBtn(label:"\(number)"){
+                                calcEngine.addNumberText(number : number)
+                            }
                         }
-                        Button("/"){
-                            action = .divide
-                        }.calcButtonStyle()
+                        CalcBtn(label:"/"){
+                            calcEngine.divideOperator()
+                        }
                     }
                     GridRow{
-                        ForEach(4..<7){ nummer in
-                            Button("\(nummer)"){
-                                numbers.append(nummer)
-                            }.calcButtonStyle()
+                        ForEach(4..<7){
+                            number in
+                            CalcBtn(label:"\(number)"){
+                                calcEngine.addNumberText(number : number)
+                            }
                         }
-                        Button("*"){
-                            action = .multiply
-                        }.calcButtonStyle()
+                        CalcBtn(label:"*"){
+                            calcEngine.multiplyOperator()
+                        }
                     }
                     GridRow{
-                        ForEach(1..<4){ nummer in
-                            Button("\(nummer)"){
-                                numbers.append(nummer)
-                            }.calcButtonStyle()
+                        ForEach(1..<4){
+                            number in
+                            CalcBtn(label:"\(number)"){
+                                //action later meegeven
+                                calcEngine.addNumberText(number : number)
+                            }
                         }
-                        Button("-"){
-                            action = .subtract
-                        }.calcButtonStyle()
+                        CalcBtn(label:"-"){
+                            calcEngine.minusOperator()
+                        }
                     }
                     GridRow{
-                        Button("0"){
-                            numbers.append(0)
-                        }.calcButtonStyle()
+                        CalcBtn(label:"0"){
+                            calcEngine.addNumberText(number : 0)
+                        }
                         Text(" ")
                         Text(" ")
-                        Button("+"){
-                            action = .add
-                        }.calcButtonStyle()
+                        CalcBtn(label:"+"){
+                            calcEngine.addOperator()
+                        }
                     }
                     GridRow{
-                        Button("Clear"){
-                            
-                        }.calcButtonStyle()
-                        Button("Enter") {
-                            let combinedNumber = numbers.reduce(0) { $0 * 10 + $1 }
-                            stack.append(combinedNumber)
-                            numbers.removeAll()
-                            result = stack.map { String($0) }.joined(separator: "\n")
-                        }
-                        .calcButtonStyle()
-
-                    }.gridCellColumns(2)
+                        CalcBtn(label:"Clear"){
+                            //placeholder
+                            calcEngine.clear()
+                            //number += 1
+                            //number kan niet worden aangepast zonder @State omdat het deel is van andere view
+                        }.gridCellColumns(2)
+                        CalcBtn(label:"Enter"){
+                            calcEngine.addNumber()
+                        }.gridCellColumns(2)
+                    }
                 }
             }
-
-        }
-        Button("Show stack") {
-            print("mimimimi")
+            Button("Show Stack"){
+                calcEngine.showStack()
+            }.frame(maxWidth: .infinity, alignment: .leading).colorInvert().padding()
+            
+            }
+        .padding()
         }
     }
+#Preview {
+    ContentView()
 }
-
