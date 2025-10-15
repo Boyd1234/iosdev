@@ -16,6 +16,7 @@
 		21F89BF52E9FF80000377741 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F89BF42E9FF80000377741 /* WelcomeView.swift */; };
 		21F89BF82E9FFA9000377741 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F89BF72E9FFA9000377741 /* Team.swift */; };
 		21F89BFA2E9FFB8B00377741 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F89BF92E9FFB8B00377741 /* Match.swift */; };
+		21F89BFB2EA00FD100377741 /* WKResultsQatar.json in Resources */ = {isa = PBXBuildFile; fileRef = 21F89BED2E9FF70200377741 /* WKResultsQatar.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,9 +99,9 @@
 		21A693E42E9819D300EEDC4B /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				21F89BED2E9FF70200377741 /* WKResultsQatar.json */,
 				21F89BF62E9FFA7300377741 /* Model */,
 				21F89BF32E9FF7D700377741 /* View */,
-				21F89BED2E9FF70200377741 /* WKResultsQatar.json */,
 				21A693E52E9819D300EEDC4B /* TestApp.swift */,
 				21F89BEE2E9FF70C00377741 /* LoadJson.swift */,
 				21F89BF02E9FF71200377741 /* WKResult.swift */,
@@ -241,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F89BFB2EA00FD100377741 /* WKResultsQatar.json in Resources */,
 				21A693EE2E9819D500EEDC4B /* Preview Assets.xcassets in Resources */,
 				21A693EA2E9819D500EEDC4B /* Assets.xcassets in Resources */,
 			);

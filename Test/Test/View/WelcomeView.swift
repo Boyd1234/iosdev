@@ -9,10 +9,27 @@ import SwiftUI
 
 struct WelcomeView: View {
     let teams = Team.getAllTeams(from: wkResults)
+    @State private var selectedTeam: String? = nil
+    
     var body: some View {
-        List(teams, id: \.self){ team in
-            Text(team)
+        NavigationView{
+            List(teams, id: \.self){ team in
+                Text(team)
+                	
+                    .foregroundColor(team == selectedTeam ? .red : .white)
+                    .onTapGesture {
+                        selectedTeam = team
+                    }
+            }
+            
+            if selectedTeam != nil {
+                Button("NEXT"){
+                    
+                }
+            }
         }
+        .navigationTitle("Pick your favorite team")
+
     }
 }
 
