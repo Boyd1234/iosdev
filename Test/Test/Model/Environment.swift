@@ -28,14 +28,11 @@ struct Environment {
     }
     
     //SCORESPERSTADION
-    static func getAllResultsByLocation(from wkResults: [WKResult], stadion: String) -> [String]{
-            // temp return
-        return wkResults.filter{ $0.location == stadion }.map{
-            let homeScore = $0.homeTeamScore ?? 0 // de 0 zorgt ervoor dat je zeker een getal krijgt en dus is die "optional" weg
-            let awayScore = $0.awayTeamScore ?? 0
-             return "\($0.homeTeam) X \($0.awayTeam)\n\(homeScore) - \(awayScore)"	
-        }
-        }
+    static func getAllResultsByLocation(from wkResults: [WKResult], stadion: String) -> [WKResult] {
+        return wkResults.filter { $0.location == stadion }
+    }
+
+
     }
     
 

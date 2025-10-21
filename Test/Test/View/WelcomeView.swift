@@ -10,20 +10,18 @@ struct WelcomeView: View {
     let teams = Environment.getAllTeams(from: wkResults)
     @State private var selectedTeam: String? = nil
     
+    
     var body: some View {
         NavigationStack {
             VStack {
-                List(teams, id: \.self) { team in
+                List(teams, id: \.self, selection: $selectedTeam) { team in
                     Text(team)
                         .foregroundColor(team == selectedTeam ? .red : .primary)
-                        .onTapGesture {
-                            selectedTeam = team
-                        }
                 }
 
                 if let selectedTeam = selectedTeam {
                     NavigationLink(
-                        destination: ResultsView(favTeam: selectedTeam)
+                        destination: ResultsView(selectedTeam: $selectedTeam)
                     ) {
                         Text("NEXT")
                             .frame(maxWidth: .infinity)

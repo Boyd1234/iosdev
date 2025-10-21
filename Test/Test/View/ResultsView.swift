@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ResultsView: View {
-    let favTeam: String
+    @Binding var selectedTeam: String?
     @State private var selectedStadion: String? = nil
-    @State private var selectedMatch: String? = nil
+    @State private var selectedMatch: WKResult? = nil
+
     var body: some View {
         NavigationSplitView{
             //Sidebar
@@ -18,7 +19,13 @@ struct ResultsView: View {
         } content: {
             //de content (midden)
             if let stadion = selectedStadion {
-                           ScoreListView(stadion: stadion)
+                ScoreListView(
+                    stadion: stadion,
+                    results: Environment.getAllResultsByLocation(from: wkResults, stadion: stadion),
+                    selectedTeam: $selectedTeam,
+                    selectedMatch: $selectedMatch
+                )
+
                        } else {
                            Text("Selecteer een stadion")
                                .foregroundColor(.secondary)

@@ -4,18 +4,31 @@
 //
 //  Created by Boyd on 16/10/2025.
 //
-
 import SwiftUI
-
 struct ScoreListView: View {
     let stadion: String
-    @Binding var selectedMatch: String?
+    let results: [WKResult]
+    @Binding var selectedTeam: String?
+    @Binding var selectedMatch: WKResult?
+
     var body: some View {
-        List(Environment.getAllResultsByLocation(from: wkResults, stadion: stadion), id: \.self) { result in
-                    Text(result)
-                        .onTapGesture {
-                            print("Je tapt op: \(result)")
-                        }
-                }
+        List(results, id: \.self, selection: $selectedMatch) { result in
+            HStack {
+                Text(result.homeTeam)
+                    .foregroundColor(result.homeTeam == selectedTeam ? .red : .primary)
+                Text(" X ")
+                Text(result.awayTeam)
+                    .foregroundColor(result.awayTeam == selectedTeam ? .red : .primary)
+                Spacer()
+                Text("\n\(result.homeTeamScore ?? 0) - \(result.awayTeamScore ?? 0)")
+                    .foregroundColor(.secondary)
+            }
+            .padding(.vertical, 4)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                selectedMatch = result
+            }
+        }
     }
 }
+

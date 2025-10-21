@@ -8,12 +8,30 @@
 import SwiftUI
 
 struct ScoreDetailView: View {
-    let match: String?
+    let match: WKResult
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text(match.dateUTC)
+            Text(match.location)
+                .font(.title)
+            Text("----------------------------------")
+            Grid{
+                
+            
+            GridRow{
+                Text(match.homeTeam)
+                Text("X")
+                Text(match.awayTeam)
+            }
+                GridRow{
+                    Text("\(match.homeTeamScore ?? 0)")
+                    Text("-")
+                    Text("\(match.awayTeamScore ?? 0)")
+                }
+            }
+            
+            Text("\(match.roundNumber)")
+            Text(match.group!)
+        }
     }
-}
-
-#Preview {
-    ScoreDetailView()
 }
