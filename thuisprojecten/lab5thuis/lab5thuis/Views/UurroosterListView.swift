@@ -1,9 +1,11 @@
 //
 //  UurroosterListView.swift
-//  lab5async
+//  lab5thuis
 //
-//  Created by Boyd Bulcaen on 05/11/2025.
+//  Created by boyd on 08/11/2025.
 //
+
+import SwiftUI
 
 import SwiftUI
 
@@ -32,10 +34,9 @@ struct UurroosterListView: View {
                         .listRowBackground(event.id == selectedId ? Color.red.opacity(1.0) : Color.clear)
                         .cornerRadius(6)
                     }
-                //                .toolbar(content: T##() -> Content)
+//                .toolbar(content: <#T##() -> Content#>)
             } detail: {
                 if let id = selectedId{
-                    Text("temp -> moet naar view verwijzen")
                     let element = dataStore.getEvent(id: id)
                     UurroosterDetailView(element: element!)
                 }
