@@ -25,7 +25,7 @@ class UurroosterDataStore {
         }
         
         func updateEvent(event: EventModel ){
-            //hij overloopt 1 voor 1 de id's en als deze voorwaarde true is gaat hij naar het volgende
+            //hij overloopt 1 voor 1 de id's en als deze voorwaarde true is gaat hij naar het volgende stuk code
             if let index = uurrooster.firstIndex(where: { $0.id == event.id}){
                 uurrooster[index] = event
                 sort()
