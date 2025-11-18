@@ -13,6 +13,7 @@ struct UurroosterListView: View {
     @State var selectedId: String?
 
     var body: some View {
+        VStack{
         if loading {
             ProgressView("Loading...")
                 .task {
@@ -36,35 +37,26 @@ struct UurroosterListView: View {
                 .navigationTitle("Uurrooster")
                 .toolbar {
                     ToolbarItem{
-                        NavigationLink(destination: AddModifyEventView()) {
+                        NavigationLink(destination: AddModifyEventView(selectedId: $selectedId)) {
                             Image(systemName: "plus")
                         }
                     }
                 }
-
+                
             } detail: {
                 if let id = selectedId {
                     let element = dataStore.getEvent(id: id)
                     UurroosterDetailView(element: element!)
                         .toolbar {
-                            NavigationLink(destination: AddModifyEventView(event: element)) {
+                            NavigationLink(destination: AddModifyEventView(selectedId: $selectedId, event: element)) {
                                 Image(systemName: "pencil")
                             }
                         }
-                        .safeAreaInset(edge: .bottom) {
-                                                    HStack(alignment: .center){
-                                                        Button("SAVE"){
-                                                            print("blablabla")
-                                                        }
-                                                        Button("CANCEL"){
-                                                            selectedId = nil
-                                                        }
-                                                    }
-                                                }
-                        
-
+                    
+                    
                 }
             }
+        }
                         
         }
     }

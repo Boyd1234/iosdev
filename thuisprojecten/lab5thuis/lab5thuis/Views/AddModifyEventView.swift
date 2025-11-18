@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddModifyEventView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(UurroosterDataStore.self) private var dataStore
     var event: EventModel?
     
     // Computed properties
@@ -24,15 +26,21 @@ struct AddModifyEventView: View {
     @State private var location: String = ""
     @State private var allDay: Bool = false
     @State private var title: String = ""
+    @Binding var selectedId: String?
+    @State private var selectedOption = 0;
+
     
     // Initializer om state correct te vullen met event-data (indien aanwezig)
-    init(event: EventModel? = nil) {
+    init(selectedId: Binding<String?>, event: EventModel? = nil) {
         self.event = event
+        self._selectedId = selectedId
+        
         _startTime = State(initialValue: event?.startDateTime ?? Date())
         _endTime = State(initialValue: event?.endDateTime ?? Date())
         _location = State(initialValue: event?.location ?? "")
         _allDay = State(initialValue: event?.allDay ?? false)
         _title = State(initialValue: event?.title ?? "")
+        _selectedOption = State(initialValue: event?.type ?? 0)
     }
     
     var body: some View {
@@ -55,13 +63,46 @@ struct AddModifyEventView: View {
             
             DatePicker("Start date & time:", selection: $startTime, displayedComponents: [.date, .hourAndMinute])
             DatePicker("End date & time:", selection: $endTime, displayedComponents: [.date, .hourAndMinute])
-            
+            Picker("Type", selection: $selectedOption) {
+                            Text("Academic").tag(0)
+                            Text("Course").tag(1)
+                        }
+            .pickerStyle(.segmented) //maakt er een switch van (dus naast elkaar)
+            .tint(.red) //maakt geselecteerde knop rood
             Spacer()
         }
         .padding()
-    }
-}
+                Spacer()
+                HStack{
+                    Button("Save") {
+                        let idevent = event?.id ?? UUID().uuidString
 
-#Preview {
-    AddModifyEventView()
+                        let e = EventModel(
+                            id: idevent,
+                            allDay: allDay,
+                            title: title,
+                            location: location,
+                            type: selectedOption,
+                            startDateTime: startTime,
+                            endDateTime: endTime
+                        )
+                        
+                        if header == "ADD EVENT" {
+                            dataStore.addEvent(event: e)
+                        } else {
+                            dataStore.updateEvent(event: e)
+                        }
+                        selectedId = nil
+                        dismiss()
+
+                    }
+                    Button("Cancel") {
+                        selectedId = nil
+                        dismiss()
+                    }
+                }
+                .padding(.top, 12)
+                
+            
+    }
 }

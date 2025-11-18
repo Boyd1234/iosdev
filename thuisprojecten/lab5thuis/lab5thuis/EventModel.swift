@@ -46,4 +46,15 @@ class EventModel: Identifiable, Hashable {
         self.startDateTime = from.startDateTime
         self.endDateTime = from.endDateTime
     }
+    
+    init(id: String, allDay: Bool, title: String, location: String, type: Int, startDateTime: Date, endDateTime: Date) {
+        self.id = id
+        self.allDay = allDay
+        self.title = title
+        self.location = location
+        self.type = type
+        self.startDateTime = startDateTime
+        self.endDateTime = endDateTime
+    }
+
 }
