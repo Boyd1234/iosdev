@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MovieDetailView: View {
     var movie : Movie
+    @Environment(PathStore.self) var pathStore
+
     var body: some View {
         VStack(alignment: .center){
             Text(movie.title)
@@ -36,11 +38,7 @@ struct MovieDetailView: View {
             NavigationLink(movie.director.firstName, value: Route.directorValue(movie.director))
             
             
-            Spacer()
-            Divider()
-            Text("Overview navigationStack")
-                .bold()
-            //TODO de navigationstack weergeven.
+            NavigationStackView()
         }
     }
 }

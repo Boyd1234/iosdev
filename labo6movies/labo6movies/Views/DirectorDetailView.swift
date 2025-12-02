@@ -10,6 +10,8 @@ import SwiftUI
 struct DirectorDetailView: View {
     var director : Director
     @Environment(MovieDataStore.self) var dataStore
+    @Environment(PathStore.self) var pathStore
+
     var body: some View {
         VStack(alignment: .center){
             HStack{
@@ -37,6 +39,8 @@ struct DirectorDetailView: View {
                 }
 
             }
+            
+            NavigationStackView()
         }
     }
 }

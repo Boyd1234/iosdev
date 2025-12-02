@@ -10,6 +10,7 @@ import SwiftUI
 struct ActorDetailView: View {
     var actor : Actor
     @Environment(MovieDataStore.self) var movieStore
+
     var body: some View {
         VStack(alignment: .center){
             HStack{
@@ -33,11 +34,7 @@ struct ActorDetailView: View {
                 }
             }
             
-            Spacer()
-            Divider()
-            Text("Overview navigationStack")
-                .bold()
-            //TODO de navigationstack weergeven.
+            NavigationStackView()
         }
     }
 }
