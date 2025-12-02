@@ -25,17 +25,24 @@ struct ContentView: View {
                 NavigationStack(path: $pathStore.path){
                     VStack{
                         List(movieStore.getMovies(), id: \.self){ movie in
-                            NavigationLink("Description van movie", value: Route.movieValue(movie))
-                            NavigationLink("meer ovr actor", value: Route.actorValue(movie.actors.first!))
-                            NavigationLink("meer over director", value: Route.directorValue(movie.director))
+                            NavigationLink(value: Route.movieValue(movie)){
+                                VStack(alignment: .leading){
+                                    Text(movie.title)
+                                        .bold()
+                                    Text(movie.description)
+                                }
+                            }
+                            //dit ga je dieper in je paginas moeten steken.
+//                            NavigationLink("meer ovr actor", value: Route.actorValue(movie.actors.first!))
+//                            NavigationLink("meer over director", value: Route.directorValue(movie.director))
                         }.navigationDestination(for: Route.self) { route in
                             switch route {
                             case let .actorValue(actor):
-                                Text("hier komt later de actor detail view")
+                                ActorDetailView(actor: actor)
                             case let .movieValue(movie):
-                                Text("hier komt later de movie detail view")
+                                MovieDetailView(movie: movie)
                             case let .directorValue(director):
-                                Text("hier komt laten de director detail view")
+                                DirectorDetailView(director: director)
                             }
                         }
                     }
