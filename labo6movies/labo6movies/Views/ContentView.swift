@@ -12,6 +12,7 @@ struct ContentView: View {
     @Environment(MovieDataStore.self) private var movieStore
     @Environment(PathStore.self) private var pathStore
 
+    //eigenlijk moet dit in MovieListView maar keb dit niet gedaan.
     var body: some View {
         @Bindable var pathStore = pathStore
         VStack {
