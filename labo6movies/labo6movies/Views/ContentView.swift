@@ -38,6 +38,7 @@ struct ContentView: View {
 //                            NavigationLink("meer over director", value: Route.directorValue(movie.director))
                         }.navigationDestination(for: Route.self) { route in
                             switch route {
+                                //let is nodig wanneer je een parameter meegeeft.
                             case let .actorValue(actor):
                                 ActorDetailView(actor: actor)
                             case let .movieValue(movie):
