@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ArtworkView: View {
+    @Environment(GalleryData.self) private var galleryData
+    @Environment(PathStore.self) private var pathStore
     var artwork : Artwork
     var body: some View {
         VStack{
@@ -20,6 +22,12 @@ struct ArtworkView: View {
             Divider().overlay(.brown)
             HStack{
                 Text("arist:")
+                List(galleryData.getArtistForArtwork(artwork: artwork), id:\.self){ artist in
+                    NavigationLink(value: Route.artistDetail(artist)){
+                        Text(artist.name).foregroundColor(.brown)
+                    }
+                }
+                Divider().overlay(.brown)
             }
         }
     }

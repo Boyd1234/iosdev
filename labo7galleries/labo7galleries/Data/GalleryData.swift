@@ -22,10 +22,18 @@ class GalleryData{
         return gallery.artists.sorted(by: { $0.name < $1.name})
     }
     
-    func getArtistForArtwork(artwork: Artwork) -> Artist{
-        var artists = galleries.flatMap{ $0.artists} //alle artists opgehaald
-        //nu ga je nog moeten zoeken
+    func getArtistForArtwork(artwork: Artwork) -> [Artist] {
+        let artists = galleries.flatMap{ $0.artists} //alle artists opgehaald
+        let art = artists.filter{
+            artist in
+            artist.artworks.contains(artwork)
+        }
+        return art
     }
+    
+//    func getArtworks() -> [Artwork]{
+//        var artworks = galleries.flatMap{ $0.}
+//    }
     
     func getArtWorkForArtist(artist: Artist) -> [Artwork]{
         return artist.artworks.sorted(by: {$0.id < $1.id})
