@@ -27,6 +27,9 @@ struct ContentView: View {
                 Tab("Favorites", systemImage: "heart.fill"){
                     FavoritesView()
                 }
+                Tab("Settings", systemImage: "heart.fill"){
+                    SettingsView()
+                }
             }
         }    }
 }

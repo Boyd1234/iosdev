@@ -20,9 +20,30 @@ class DataManager {
         return cars
     }
     
-    func addFavorite(car: Car){
-        favorites.append(car)
-        favorites.filter{ $0.id != $1.id}
+    func sortCars(string : String) -> [Car]{
+        let cars = getCars()
+        var sorted : [Car]? = nil
+        if string == "Prijs" {
+            sorted = cars.sorted(by: { $0.price < $1.price})
+        }
+        if string == "Merk"{
+            sorted = cars.sorted(by: { $0.brand < $1.brand})
+        }
+        if string == "Jaar"{
+            sorted = cars.sorted(by: { $0.year < $1.year})
+        }
+        let returnval : [Car] = sorted!
+        return returnval
+    }
+    
+    func addFavorite(car: Car) {
+        // Check of er al een auto in de lijst zit met hetzelfde id
+        let exists = favorites.contains(where: { $0.id == car.id })
+        
+        // Alleen toevoegen als hij nog niet bestaat
+        if !exists {
+            favorites.append(car)
+        }
     }
     
     func getFavorites() -> [Car]{
