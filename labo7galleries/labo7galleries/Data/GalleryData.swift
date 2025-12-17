@@ -15,20 +15,33 @@ class GalleryData{
     }
     
     func getGalleries() -> [Gallery] {
-        galleries.galleries
+        return galleries
+    }
+    
+    func getArtistsForGallerie(gallery : Gallery) -> [Artist]{
+        return gallery.artists.sorted(by: { $0.name < $1.name})
+    }
+    
+    func getArtistForArtwork(artwork: Artwork) -> Artist{
+        var artists = galleries.flatMap{ $0.artists} //alle artists opgehaald
+        //nu ga je nog moeten zoeken
+    }
+    
+    func getArtWorkForArtist(artist: Artist) -> [Artwork]{
+        return artist.artworks.sorted(by: {$0.id < $1.id})
     }
     
     func loadData() async {
         do{
             print("simulating 2 second load delay")
             try await Task.sleep(for: .seconds(2))
-            
-            let data : [Gallery] = try load("galleries.json")
-            galleries = data
+            let root : Galleries =  load("galleries.json")
+            galleries = root.galleries
             
             print("data loaded successfully")
         } catch {
             print("failed to load galleries:", error)
+            galleries = []
         }
     }
 }

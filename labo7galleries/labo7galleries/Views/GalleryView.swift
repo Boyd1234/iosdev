@@ -8,23 +8,13 @@
 import SwiftUI
 
 struct GalleryView: View {
-    @Environment(GalleryData.self) private var galleryData
-    @Binding var selectedGallery : Gallery
-    @State var loading = true;
+    @Environment(GalleryData.self) var galleryData
+    @Binding var selectedGallery : Gallery?
     
     var body: some View {
-        
-        if loading{
-            ProgressView("loading")
-                .task {
-                    await galleryData.loadData()
-                    loading = false;
-                }
-        } else {
-            
-            
             VStack{
-                List(galleryData.getGalleries(), selection: $selectedGallery) { gallery in
+                //id moet voor selection, anders werkt het niet
+                List(galleryData.getGalleries(), id:\.self, selection: $selectedGallery) { gallery in
                     VStack{
                         Text(gallery.name)
                             .font(.title)
@@ -35,6 +25,6 @@ struct GalleryView: View {
                     }
                 }
             }
-        }
+    
     }
 }
