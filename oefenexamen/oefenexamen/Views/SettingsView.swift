@@ -19,7 +19,18 @@ struct SettingsView: View {
                 }
             }
             List(dataManager.sortCars(string: selectedOption), id:\.self){ car in
-                Text(car.model)
+                VStack{
+                    Text(car.brand)
+                    Text(car.color)
+                    Text(car.fuelType)
+                    Text(car.imageURL)
+                    Text(car.model)
+                    Text("\(car.price)")
+                    Text("\(car.year)")
+                }
+                Divider().overlay(.brown)
+                
+                
                 
             }
             .pickerStyle(SegmentedPickerStyle()) // kan ook WheelPickerStyle, MenuPickerStyle, etc.

@@ -46,6 +46,10 @@ class DataManager {
         }
     }
     
+    func removeFavorite(car: Car){
+        favorites.removeAll{ $0.id == car.id}
+    }
+    
     func getFavorites() -> [Car]{
         return favorites
     }

@@ -12,13 +12,20 @@ struct FavoritesView: View {
     var body: some View {
         VStack{
             List(dataManager.getFavorites(), id:\.self){ car in
-                
-                Text(car.model)
+                VStack{
+                    Text(car.brand)
+                    Text(car.color)
+                    Text(car.fuelType)
+                    Text(car.imageURL)
+                    Text(car.model)
+                    Text("\(car.price)")
+                    Text("\(car.year)")
+                    Button("Remove from favorites"){
+                        dataManager.removeFavorite(car: car)
+                    }
+                }
+                Divider().overlay(.brown)
             }
         }
     }
-}
-
-#Preview {
-    FavoritesView()
 }
